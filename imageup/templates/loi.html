@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+   <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+                explore and upload
+                <form action="/" method="POST">        
+                    <p> <input type="submit" name="explore" value="explore"/></p>
+                </form>
+                <form action="/" method='POST'>
+                    <p> <input type="submit" name="upload" value="upload"/></p>
+                </form>
+                Login
+                <form action="/" method="POST" >
+                    {{logoutmsg}}    
+                        
+                        <p><input type="text" name="username" id="username" placeholder="Username" required/></p>
+                        
+                        <p><input type="password" name="password" id="password" placeholder="Password" required/></p>
+                        
+                        <p><input type="submit" name="login" value="login"/>
+                </form><hr>
+                register
+                <form action="/register" method="POST">        
+                    <p><input type="text" name="username" id="username" placeholder="Username" required/></p>    
+                    <p><input type="password" name="password" id="password" placeholder="Password" required/></p>
+
+                    <input type="submit" name="register" value="register"/></p>
+                </form><hr>
+    </div>
+</body>
+</html>         
+

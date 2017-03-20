@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	.uploader {
+		position:relative; 
+		overflow:hidden; 
+		width:300px; 
+		height:350px; 
+		background:#f3f3f3; 
+		border:2px dashed #e8e8e8;}
+
+	#fileToUpload{
+		position:absolute;
+		width:300px;
+		height:400px;
+		top:-50px;
+		left:0;
+		z-index:2;
+		opacity:0;
+		cursor:pointer;}
+
+	.uploader img{
+		position:absolute;
+		width:302px;
+		height:352px;
+		top:-1px;
+		left:-1px;
+		z-index:1;
+		border:none;}
+        #myProgress {
+                width: 100%;
+                background-color: grey;
+            }
+         #myBar {
+                    width: 1%;
+                        height: 30px;
+                            background-color: green;
+            }
+	
+</style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js">
+</script>
+<script>
+window.onload = function () { 
+	var imageLoader = document.getElementById('fileToUpload');
+    imageLoader.addEventListener('change', handleImage, false);
+
+	function handleImage(e) {
+    	
+    	var reader = new FileReader();
+    	
+    	reader.onload = function (event) {
+        
+        $('.uploader img').attr('src',event.target.result);
+    	}
+    
+   	console.log(e.target.files[0]);
+    reader.readAsDataURL(e.target.files[0]);
+	}
+}
+
+
+</script>
+
+</head>
+<body>
+        <p><h4>ImageUploader</h4></p>
+        <p><h5>welcome {{username_in}}</h5></p>
+        <form action="/upload/{{username_in}}" method="POST" enctype="multipart/form-data">   
+            <p>
+                <div class="uploader" onclick="$('#fileToUpload').click()">
+		    Click here or drag here your images for preview 
+			<img src=""/>
+			<input type="file" name="fileToUpload" id="fileToUpload" accept="image/">
+                </div>
+            </p>
+		
+            <p> <input type="submit" value="Upload Image" name="submit" ></p>
+                
+                <p><a href="/logout">logout</a></p>
+        	
+	</form>
+        <p><a href="/{{username_in}}/uploaded" >GOTO GALLERY</a></p>
+</body>
+
+</html>

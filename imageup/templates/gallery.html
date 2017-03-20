@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+<h2>Gallery</h2>
+{{image_list}}
+<hr>
+{% for img in image_list%}
+<a href="{{url_for('image_details',filename=img.split('.')[0],username=username) }}" ><img src="/static/images/thumbnails/{{img}}"></a>
+{% endfor %}
+</body>
+</html>
