@@ -19,7 +19,6 @@ def login():
 
     if request.method == 'POST':      
         if 'login' in request.form:        
-            
             #get username and password from form;user input
             username_in= request.form['username']
             password_in = request.form['password']
@@ -27,7 +26,7 @@ def login():
             #database connection 
             con = sql.connect("database.db")
             cur = con.cursor()
-            
+
             #check the existance of user
             sql_command1 = "select password from users where username=(?)"           
             cur.execute(sql_command1,(username_in,))
@@ -55,20 +54,14 @@ def login():
             if password_in == password_out:
                 
                 session['username_in'] = username_in
+                con.commit
+                con.close()
                 return render_template('index.html', username_in=username_in)
             else:
                 loginerror = "invalid password"
                 return render_template('login.html',loginerror=loginerror)
-        #explore public gallery
-        #if 'explore' in request.form:
-                  
-           # return redirect(url_for('gallery'))
-        
-        #public uploads
-
-    #else load login.html
     else: 
         if 'username_in' in session:
             username_in = session['username_in']
-            return render_template("index_.html",username_in=username_in)
+            return render_template("index.html",username_in=username_in)
         return render_template("index_public.html")

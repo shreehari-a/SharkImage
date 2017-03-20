@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 import sqlite3 as sql
-import Image
+from PIL import Image
 import bcrypt
 import socket
 import os
@@ -32,10 +32,15 @@ def handle_upload(username='anonymous'):
         file = flask.request.files['fileToUpload']
         filename = secure_filename(file.filename)
                 
-        #database intialise
+        #open database
         con = sql.connect("database.db")
         c = con.cursor()
-                
+        c.execute("select * from users")
+        m=c.fetchone()
+        print
+        print str(m)
+        print
+
         #create img table,insert active user too!
         sql_command1 = "create table if not exists imageDetails(\
                 imageId integer primary key autoincrement,\
@@ -62,7 +67,8 @@ def handle_upload(username='anonymous'):
         upload_time = datetime.now().time()
         upload_time = str(upload_time)
                 
-        #insert fields into table 
+        #insert fields into table
+        
         sql_command3 = "insert into imageDetails(originalFilename,extension,uploadDate,uploadTime,hostIp,username)\
                 values(?,?,?,?,?,?)"                           
         c.execute(sql_command3,(filename,extension,upload_date,upload_time,host_ip,username,))
@@ -72,21 +78,23 @@ def handle_upload(username='anonymous'):
         c.execute(sql_command4,(filename,upload_time,host_ip,))
         new_filename = c.fetchone()
         new_filename = str(new_filename[0])+'.jpg'
-                
-        #save image with new filename into directory
-        file.save(os.path.join(os.getcwd(),'imageup','static', 'images', new_filename))
-                
-        #save thumbnail into /images/thumbnails
-        size = 128,128
-        im = Image.open('imageup/static/images/'+new_filename)
-        th = im.thumbnail(size)
-        outfile = os.path.join(os.getcwd(),'imageup','static', 'images','thumbnails',os.path.splitext(new_filename)[0]+".thumbnail")
-        im.save(outfile,"JPG")
-                              
-        #database commmit
+        
+        #database commit
         con.commit()
         con.close()
         
+        #save image with new filename into directory
+        file.save(os.path.join(os.getcwd(),'imageup','static', 'images', new_filename))
+        print new_filename        
+         
+        #save thumbnail into /images/thumbnails
+        size = 128,128
+        im = Image.open('imageup/static/images/'+new_filename)
+        im.thumbnail(size,Image.ANTIALIAS)
+        outfile = os.path.join(os.getcwd(),'imageup','static', 'images','thumbnails',os.path.splitext(new_filename)[0]+".thumbnail")
+        im.save(outfile,"JPEG") 
+       
+              
         if username is 'anonymous':
             return flask.redirect(flask.url_for('image_details',filename=new_filename))
         return flask.redirect(flask.url_for('image_details',filename=new_filename,username=username))
