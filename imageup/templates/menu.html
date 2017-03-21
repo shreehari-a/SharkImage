@@ -11,25 +11,36 @@
         <center>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a>
+                    <li><a href="/">Home</a>
                     </li>
+                    {% if session %}
+                    <li><a href="/{{ username_in }}/uploaded">My Album</a>
+                    </li>
+                    {% endif %}
                     <li><a href="/uploaded">Explore</a>
                     </li>
                 </ul>
-                <form action="/register" method="POST" class="navbar-form navbar-right">
-                    <button type="submit" class="btn btn-success" name="register">Register</button>
-                </form>
-                <form action="/" method="POST" class="navbar-form navbar-right" >
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-default" name="login">Login</button>
-                </form>
-                
+                {% if session %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">You are loggedin</a>
+                        </li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                {% else %}
+                    <form action="/register" method="POST" class="navbar-form navbar-right">
+                        <button type="submit" class="btn btn-primary" name="register">Register</button>
+                    </form>
+                    <form action="/" method="POST" class="navbar-form navbar-right" >
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-default" name="login">Login</button>
+                    </form>
+                {% endif %}
             </div>
         </center>
     </div>
-</div>               
+</div> 

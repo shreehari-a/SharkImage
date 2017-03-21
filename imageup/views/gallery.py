@@ -29,6 +29,6 @@ def gallery(username='anonymous'):
     image_list=[]
     for imageid in imagelist:
         image_list.append(str(imageid[0])+".thumbnail")
-     
+
     return render_template('gallery.html',image_list=image_list,username=username)
 

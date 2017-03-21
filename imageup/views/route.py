@@ -64,4 +64,5 @@ def login():
         if 'username_in' in session:
             username_in = session['username_in']
             return render_template("index.html",username_in=username_in)
-        return render_template("index_public.html")
+        username_in = 'anonymous'  
+        return render_template("index.html",username_in=username_in)

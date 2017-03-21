@@ -14,6 +14,7 @@ from imageup.views.galleryone import app
 from imageup.views.deleteimage import app
 from imageup.views.register import app
 from imageup.views.upload import app
+from imageup.views.logout import app
 
 from imageup.models import app
 

@@ -3,15 +3,43 @@
 <link rel="stylesheet" href="/static/bootstrap.min.css">
 <script src="/static/jquery.min.js"></script>
 <script src="/static/bootstrap.min.js"></script>
+<script src="/static/masonry.pkgd.min.js"></script>
+<script>
+$(function() {
+$('.grid').masonry({
+  
+  itemSelector: '.grid-item',
+  gutter: 10,
+});
 
-
+$('.grid').imagesLoaded().progress( function() {
+  $('.grid').masonry('layout');
+});
+});
+</script>
 </head>
 <body>
-{% include 'menu.html' %}
+    {% include 'menu.html' %}
+</br></br></br>
 {{image_list}}
 <hr>
-{% for img in image_list%}
-<a href="{{url_for('image_details',filename=img.split('.')[0],username=username) }}" ><img src="/static/images/thumbnails/{{img}}"></a>
-{% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="grid">
+             {% for img in image_list%}
+             <div class="grid-size"></div>  
+             <div class="grid-item">
+            <a href="{{url_for('image_details',filename=img.split('.')[0],username=username) }}" >
+                <img src="/static/images/thumbnails/{{img}}">
+            </a>
+            </div>
+       
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+
 </body>
 </html>
+
+        

@@ -88,7 +88,7 @@ def handle_upload(username='anonymous'):
         print new_filename        
          
         #save thumbnail into /images/thumbnails
-        size = 128,128
+        size =256,192
         im = Image.open('imageup/static/images/'+new_filename)
         im.thumbnail(size,Image.ANTIALIAS)
         outfile = os.path.join(os.getcwd(),'imageup','static', 'images','thumbnails',os.path.splitext(new_filename)[0]+".thumbnail")
