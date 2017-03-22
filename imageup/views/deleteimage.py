@@ -14,6 +14,8 @@ def delete_image(image_id,username):
     c.execute(sql_command)
     con.commit()
     con.close()
-    os.remove(os.path.join(os.getcwd(),'images',image_id+'.jpg'))
-    os.remove(os.path.join(os.getcwd(),'images','thumbnails',image_id+'.thumbnail'))
-    return flask.Response('''deleted <a href="/%s/uploaded">go back to gallery</a>''')%username
+    os.remove(os.path.join(os.getcwd(),'imageup','images',image_id+'.jpg'))
+    os.remove(os.path.join(os.getcwd(),'imageup','images','thumbnails',image_id+'.thumbnail'))
+    return  flask.redirect(flask.url_for('gallery',username=username))
+
+

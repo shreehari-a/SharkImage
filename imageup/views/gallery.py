@@ -8,8 +8,8 @@ import os
 from imageup import app
 
 
-@app.route("/uploaded")
-@app.route("/<username>/uploaded")
+@app.route("/uploaded",methods=['GET','POST'])
+@app.route("/<username>/uploaded",methods=['GET','POST'])
 #@login_required
 def gallery(username='anonymous'):
     '''
@@ -20,10 +20,18 @@ def gallery(username='anonymous'):
     con = sql.connect("database.db")
     cur = con.cursor()
     
-    #search database for the images of user-<username>
-    sql_command1="select imageId from imageDetails where username=?"
-    cur.execute(sql_command1,(username,))
-    imagelist=cur.fetchall()
+    #if explore input from user fetch all the images which are for user=anonymous
+    if flask.request.args.get('explore'):
+        sql_command1="select imageId from imageDetails where username='anonymous'"
+        cur.execute(sql_command1)
+        imagelist=cur.fetchall()
+    
+    else:
+        #search database for the images of user-<username>
+        sql_command1="select imageId from imageDetails where username=?"
+        cur.execute(sql_command1,(username,))
+        imagelist=cur.fetchall()
+    
     
     #arrange name into list
     image_list=[]

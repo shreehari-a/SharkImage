@@ -67,8 +67,8 @@ window.onload = function () {
         {% include 'menu.html' %}
         </br></br></br>
         
-        <div class="col-lg-1 col-offset-6 centered">    
-        <form action="/upload/{{ username_in }}" method='POST' enctype="multipart/form-data">   
+        <div class="col-lg-1  centered">    
+        <form action="/upload/{{ username }}" method='POST' enctype="multipart/form-data">   
             <p>
                 <div class="uploader" onclick="$('#fileToUpload').click()">
 		    Click here or drag here your images for preview 

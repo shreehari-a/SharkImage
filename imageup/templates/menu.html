@@ -14,7 +14,7 @@
                     <li><a href="/">Home</a>
                     </li>
                     {% if session %}
-                    <li><a href="/{{ username_in }}/uploaded">My Album</a>
+                    <li><a href="/{{ username }}/uploaded">My Album</a>
                     </li>
                     {% endif %}
                     {% if not session %}
@@ -22,7 +22,7 @@
                         <li><a href="/uploaded">Explore</a>
                         </li>
                     {% else %}
-                        <li><a href="/{{ username_in }}/uploaded">explore</a>
+                    <li><a href="{{url_for('gallery',username=username,explore="true")}}">Explore</a>
                         </li>
                     {% endif %}
                 </ul>

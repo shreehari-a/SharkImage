@@ -69,12 +69,16 @@ def handle_upload(username='anonymous'):
         #get uploadTime
         upload_time = datetime.now().time()
         upload_time = str(upload_time)
+        
+        key = 'priavte' 
+        if username == 'anonymous':
+            key = 'public'
                 
         #insert fields into table
         
-        sql_command3 = "insert into imageDetails(originalFilename,extension,uploadDate,uploadTime,hostIp,username)\
-                values(?,?,?,?,?,?)"                           
-        c.execute(sql_command3,(filename,extension,upload_date,upload_time,host_ip,username,))
+        sql_command3 = "insert into imageDetails(originalFilename,extension,uploadDate,uploadTime,hostIp,key,username)\
+                values(?,?,?,?,?,?,?)"                           
+        c.execute(sql_command3,(filename,extension,upload_date,upload_time,host_ip,key,username,))
         
         #generate a new filename
         sql_command4 = "select imageId from imageDetails where originalFilename=? and uploadTime=? and hostIp=?"
@@ -99,7 +103,7 @@ def handle_upload(username='anonymous'):
        
               
         if username is 'anonymous':
-            return flask.redirect(flask.url_for('image_details',filename=new_filename))
+            return flask.redirect(flask.url_for('image_details',filename=new_filename,username=username))
         return flask.redirect(flask.url_for('image_details',filename=new_filename,username=username))
 
     else:

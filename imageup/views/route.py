@@ -56,13 +56,13 @@ def login():
                 session['username_in'] = username_in
                 con.commit
                 con.close()
-                return render_template('index.html', username_in=username_in)
+                return render_template('index.html', username=username_in)
             else:
                 loginerror = "invalid password"
                 return render_template('index.html',loginerror=loginerror)
     else: 
         if 'username_in' in session:
             username_in = session['username_in']
-            return render_template("index.html",username_in=username_in)
+            return render_template("index.html",username=username_in)
         username_in = 'anonymous'  
-        return render_template("index.html",username_in=username_in)
+        return render_template("index.html",username=username_in)
