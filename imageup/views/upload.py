@@ -50,6 +50,7 @@ def handle_upload(username='anonymous'):
                 uploadDate,\
                 uploadTime,\
                 hostIp,\
+                key,\
                 username references users(username))"
         c.execute(sql_command1)
                            

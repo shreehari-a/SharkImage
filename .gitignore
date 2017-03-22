@@ -1,3 +1,6 @@
+database.db
 imageup/images/*
 *pyc
 *py~
+*swp
+

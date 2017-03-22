@@ -1,13 +1,16 @@
 from flask import Flask, session, render_template
 from functools import wraps
 
-app = Flask(__name__,static_folder="images")
+app = Flask(__name__)
 
 
 app.config.update(
     DEBUG = True,
-    SECRET_KEY = 'secret_xxx'
+    SECRET_KEY = 'secret_xxx',
+    
 )
+
+app.config["CACHE_TYPE"] = "null"
 
 def login_required(test):
     @wraps(test)

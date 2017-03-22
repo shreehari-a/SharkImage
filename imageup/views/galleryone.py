@@ -13,7 +13,13 @@ from imageup import app
 @app.route('/<username>/uploaded/<filename>')
 def image_details(filename,username='anonymous'):
     
-    link = os.path.join(request.url_root,"images",filename)
+    link = os.path.join(request.url_root,"images",filename + '.jpg')
     filename = filename.split('.')
     img_id = filename[0]
     return render_template('details.html', img_id=img_id , link=link, username=username)
+
+
+@app.route('/send_one_image/<filename>')
+def sendoneimage(filename):
+    path = os.path.join(os.getcwd(),'imageup','images')
+    return send_from_directory(path,filename)

@@ -1,5 +1,5 @@
 #shimages.com/<username>/uploaded- public url uploaded images
-from flask import Flask, request, redirect, url_for, session, abort, render_template ,Response ,flash ,send_from_directory, Blueprint
+import flask 
 from datetime import datetime
 import sqlite3 as sql
 import os
@@ -29,6 +29,12 @@ def gallery(username='anonymous'):
     image_list=[]
     for imageid in imagelist:
         image_list.append(str(imageid[0])+".thumbnail")
+    
+    return flask.render_template('gallery.html',image_list=image_list,username=username)
 
-    return render_template('gallery.html',image_list=image_list,username=username)
-
+@app.route('/send_images/<filename>')
+def sendimages(filename):
+    filename = filename + '.thumbnail'
+    path  = os.path.join(os.getcwd(),'imageup','images','thumbnails')
+    return flask.send_from_directory(path,filename)
+   
