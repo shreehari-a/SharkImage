@@ -13,7 +13,7 @@ from imageup import app
 @app.route('/<username>/uploaded/<filename>')
 def image_details(filename,username='anonymous'):
     
-    link = os.path.join(request.url_root,"static","images",filename)
+    link = os.path.join(request.url_root,"images",filename)
     filename = filename.split('.')
     img_id = filename[0]
     return render_template('details.html', img_id=img_id , link=link, username=username)

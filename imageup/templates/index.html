@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="/static/bootstrap.min.css">
 <script src="/static/jquery.min.js"></script>
 <script src="/static/bootstrap.min.js"></script>
@@ -14,6 +15,8 @@
 		height:350px; 
 		background:#f3f3f3; 
 		border:2px dashed #e8e8e8;}
+
+
 
 	#fileToUpload{
 		position:absolute;
@@ -60,10 +63,12 @@ window.onload = function () {
 </script>
 
 </head>
-<body>
+<body class="container">
         {% include 'menu.html' %}
         </br></br></br>
-        <form action="/upload/{{username_in}}" method="POST" enctype="multipart/form-data">   
+        
+        <div class="col-lg-1 col-offset-6 centered">    
+        <form action="/upload/{{ username_in }}" method='POST' enctype="multipart/form-data">   
             <p>
                 <div class="uploader" onclick="$('#fileToUpload').click()">
 		    Click here or drag here your images for preview 
@@ -71,11 +76,9 @@ window.onload = function () {
 			<input type="file" name="fileToUpload" id="fileToUpload" accept="image/">
                 </div>
             </p>
-		
+            </br>
             <p> <input type="submit" value="Upload Image" name="submit" ></p>
-                
-        	
-	</form>
+        </form>
 </body>
 
 </html>

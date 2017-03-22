@@ -12,10 +12,13 @@ import os
 #import main app
 from imageup import app
 
+#from imageup import login_required
+
 
 #shimage.com/upload >> private
 @app.route("/upload",methods=['GET','POST'])
 @app.route("/upload/<username>",methods=['GET','POST'])
+
 #@login_required
 def handle_upload(username='anonymous'):
     '''
@@ -25,11 +28,12 @@ def handle_upload(username='anonymous'):
     images are stored into /static/images/<filename>.extension
     
     '''
+
     if flask.request.method == 'POST':             
-        
-        
+
         #get the file from the form
         file = flask.request.files['fileToUpload']
+        
         filename = secure_filename(file.filename)
                 
         #open database
@@ -37,9 +41,6 @@ def handle_upload(username='anonymous'):
         c = con.cursor()
         c.execute("select * from users")
         m=c.fetchone()
-        print
-        print str(m)
-        print
 
         #create img table,insert active user too!
         sql_command1 = "create table if not exists imageDetails(\
@@ -54,6 +55,7 @@ def handle_upload(username='anonymous'):
                            
         #get extension
         extension_list = filename.split('.')
+       
         extension = extension_list[1]
                 
         #get host id
@@ -84,14 +86,14 @@ def handle_upload(username='anonymous'):
         con.close()
         
         #save image with new filename into directory
-        file.save(os.path.join(os.getcwd(),'imageup','static', 'images', new_filename))
+        file.save(os.path.join(os.getcwd(),'imageup', 'images', new_filename))
         print new_filename        
          
         #save thumbnail into /images/thumbnails
         size =256,192
-        im = Image.open('imageup/static/images/'+new_filename)
+        im = Image.open('imageup/images/'+new_filename)
         im.thumbnail(size,Image.ANTIALIAS)
-        outfile = os.path.join(os.getcwd(),'imageup','static', 'images','thumbnails',os.path.splitext(new_filename)[0]+".thumbnail")
+        outfile = os.path.join(os.getcwd(),'imageup','images','thumbnails',os.path.splitext(new_filename)[0]+".thumbnail")
         im.save(outfile,"JPEG") 
        
               

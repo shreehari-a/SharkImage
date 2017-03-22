@@ -30,7 +30,7 @@ $('.grid').imagesLoaded().progress( function() {
              <div class="grid-size"></div>  
              <div class="grid-item">
             <a href="{{url_for('image_details',filename=img.split('.')[0],username=username) }}" >
-                <img src="/static/images/thumbnails/{{img}}">
+                <img src="{{ request.url_root }}images/thumbnails/{{img}}">
             </a>
             </div>
        

@@ -35,7 +35,7 @@ def login():
             
             # If Username_in not found, login is invalid
             if user_out is None:
-                return render_template("login.html")
+                return render_template("index.html")
                         
             # Else then retrieve Password_out
             password_out = user_out[0]
@@ -59,7 +59,7 @@ def login():
                 return render_template('index.html', username_in=username_in)
             else:
                 loginerror = "invalid password"
-                return render_template('login.html',loginerror=loginerror)
+                return render_template('index.html',loginerror=loginerror)
     else: 
         if 'username_in' in session:
             username_in = session['username_in']
