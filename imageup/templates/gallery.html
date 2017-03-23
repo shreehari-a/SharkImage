@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="/static/bootstrap.min.css">
+<style>
+    .container{
+            margin:0 auto;
+            max-width: 970px;
+        }
+</style>
 <script src="/static/jquery.min.js"></script>
 <script src="/static/bootstrap.min.js"></script>
 <script src="/static/masonry.pkgd.min.js"></script>
@@ -18,7 +24,7 @@ $('.grid').imagesLoaded().progress( function() {
 });
 </script>
 </head>
-<body style=max-width:950px;>
+<body class="container">
     {% include 'menu.html' %}
 </br></br></br>
 {{image_list}}
