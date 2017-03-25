@@ -1,7 +1,7 @@
-from flask import Flask, session, render_template
+import flask 
 from functools import wraps
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 
 app.config.update(
@@ -15,12 +15,13 @@ app.config["CACHE_TYPE"] = "null"
 def login_required(test):
     @wraps(test)
     def wrap( *args, **kwargs):
-        if 'username_in' in session:
+        if 'username_in' or 'username'  in session:
             return test(*args,**kwargs)
+            print username_in
         else:
-            return render_template('index.html')
+            flask.flash("you are not logged in")
+            return flask.redirect(flask.url_for('login'))
     return wrap
-
 
 
 from imageup.views.route import app
@@ -32,4 +33,6 @@ from imageup.views.upload import app
 from imageup.views.logout import app
 
 from imageup.models import app
+
+
 

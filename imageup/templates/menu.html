@@ -22,7 +22,7 @@
                         <li><a href="/uploaded">Explore</a>
                         </li>
                     {% else %}
-                    <li><a href="{{url_for('gallery',username=username,explore="true")}}">Explore</a>
+                    <li><a href="{{url_for('explore',username=username,explore="true")}}">Explore</a>
                         </li>
                     {% endif %}
                 </ul>
