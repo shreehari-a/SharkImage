@@ -32,7 +32,7 @@ from imageup.views.register import app
 from imageup.views.upload import app
 from imageup.views.logout import app
 
-from imageup.models import app
+#from imageup.models import app
 
 
 
