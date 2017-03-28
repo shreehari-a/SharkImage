@@ -104,7 +104,7 @@ def handle_upload(username='anonymous'):
               
         if username is 'anonymous':
             return flask.redirect(flask.url_for('image_details',filename=new_filename,username=username))
-        return flask.redirect(flask.url_for('image_details',filename=new_filename,username=username))
+        return flask.redirect(flask.url_for('image_details',filename=new_filename,username=flask.session['username_in']))
 
     else:
         return "unauthorised url"

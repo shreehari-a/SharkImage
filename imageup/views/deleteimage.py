@@ -16,6 +16,6 @@ def delete_image(image_id,username):
     con.close()
     os.remove(os.path.join(os.getcwd(),'imageup','images',image_id+'.jpg'))
     os.remove(os.path.join(os.getcwd(),'imageup','images','thumbnails',image_id+'.thumbnail'))
-    return  flask.redirect(flask.url_for('gallery',username=username))
+    return  flask.redirect(flask.url_for('gallery',username=flask.session['username_in']))
 
 

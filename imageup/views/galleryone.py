@@ -29,12 +29,15 @@ def image_details(filename,username='anonymous'):
         key = 'private'
     else:
         key = 'public'
-    print key
     #link for sharing
     link = os.path.join(flask.request.url_root,"images",filename + '.jpg')
     filename = filename.split('.')
     img_id = filename[0]
-    return flask.render_template('details.html', img_id=img_id , link=link, username=username,key=key)
+
+    if flask.session:
+        username = flask.session['username_in']
+
+    return flask.render_template('details.html', img_id=img_id , link=link, username=username, key=key)
 
 @app.route('/send_one_image/<filename>')
 def sendoneimage(filename):

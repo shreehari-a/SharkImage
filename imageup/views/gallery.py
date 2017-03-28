@@ -8,9 +8,8 @@ from functools import wraps
 from imageup import app
 
 
-
-@app.route("/<username>/uploaded",methods=['GET','POST'])
 @app.route("/uploaded",methods=['GET','POST'])
+@app.route("/<username>/uploaded",methods=['GET','POST'])
 def explore(username='anonymous'):
     print username 
     #secure url
@@ -26,7 +25,6 @@ def explore(username='anonymous'):
         sql_command1="select imageId from imageDetails where key='public'"
         cur.execute(sql_command1)
         imagelist=cur.fetchall()
-        print imagelist
     
     else:
         #search database for the images of user-<username>
@@ -34,13 +32,16 @@ def explore(username='anonymous'):
         cur.execute(sql_command1,(username,))
         imagelist=cur.fetchall()
     
+    username = 'anonymous'
+    if flask.session:
+        username = flask.session['username_in']
     
     #arrange name into list
     image_list=[]
     for imageid in imagelist:
         image_list.append(str(imageid[0])+".thumbnail")
     
-    return flask.render_template('gallery.html',image_list=image_list,username=username)
+    return flask.render_template('gallery.html',image_list=image_list,username = username)
 
 @app.route('/send_images/<filename>')
 def sendimages(filename):

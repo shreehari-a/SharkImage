@@ -17,18 +17,12 @@
                     <li><a href="/{{ username }}/uploaded">My Album</a>
                     </li>
                     {% endif %}
-                    {% if not session %}
-                    </li>
                     <li><a href="/uploaded">Explore</a>
                         </li>
-                    {% else %}
-                    <li><a href="/uploaded">Explore</a>
-                        </li>
-                    {% endif %}
                 </ul>
                 {% if session %}
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">You are loggedin</a>
+                        <li><a href="#">welcome {{username}}</a>
                         </li>
                         <li><a href="/logout">Logout</a></li>
                     </ul>
