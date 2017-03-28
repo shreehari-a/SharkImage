@@ -13,15 +13,9 @@
                     max-height:384px;
                 }
         .btn{
-                width:100px;
+                max-width:150px;
             }
     </style>
-    <script>
-       link= $('#sharelink').attr('href')
-       $('#sharelink').text(link)
-
-    </script>
-
 </head>
 <body class="container">
 
@@ -36,9 +30,12 @@
     </a>
 </p>
 
-{% if username!='anonymous' %}
+{% if username!='anonymous' and key=='private' %}
 <a href="{{url_for('delete_image',username=username,image_id=img_id)}}" onclick="return confirm('Are you sure you want to delete this item?');">
     <input type="submit" class="btn btn-danger"  value="deleteImage"/>
+</a>
+<a href="{{url_for('makepublic',username=username,image_id=img_id)}}" onclick="return confirm('Are you sure you want to expose this image to public?');">
+    <input type="submit" class="btn btn-info" value="Make it public"/>
 </a>
 {% endif %}
 <p><td class="info">

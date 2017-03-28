@@ -70,7 +70,7 @@ def handle_upload(username='anonymous'):
         upload_time = datetime.now().time()
         upload_time = str(upload_time)
         
-        key = 'priavte' 
+        key = 'private' 
         if username == 'anonymous':
             key = 'public'
                 

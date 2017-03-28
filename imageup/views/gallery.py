@@ -12,21 +12,25 @@ from imageup import app
 @app.route("/<username>/uploaded",methods=['GET','POST'])
 @app.route("/uploaded",methods=['GET','POST'])
 def explore(username='anonymous'):
+    print username 
+    #secure url
     if username != 'anonymous' and  not flask.session:
         return flask.redirect(flask.url_for('login'))
+   
     #database connection
     con = sql.connect("database.db")
     cur = con.cursor()
     
     #if explore input from user fetch all the images which are for user=anonymous
-    if flask.request.args.get('explore'):
-        sql_command1="select imageId from imageDetails where username='anonymous'"
+    if username == 'anonymous':
+        sql_command1="select imageId from imageDetails where key='public'"
         cur.execute(sql_command1)
         imagelist=cur.fetchall()
+        print imagelist
     
     else:
         #search database for the images of user-<username>
-        sql_command1="select imageId from imageDetails where username=?"
+        sql_command1="select imageId from imageDetails where username=? and key='private'"
         cur.execute(sql_command1,(username,))
         imagelist=cur.fetchall()
     

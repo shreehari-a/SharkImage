@@ -19,10 +19,10 @@
                     {% endif %}
                     {% if not session %}
                     </li>
-                        <li><a href="/uploaded">Explore</a>
+                    <li><a href="/uploaded">Explore</a>
                         </li>
                     {% else %}
-                    <li><a href="{{url_for('explore',username=username,explore="true")}}">Explore</a>
+                    <li><a href="/uploaded">Explore</a>
                         </li>
                     {% endif %}
                 </ul>
