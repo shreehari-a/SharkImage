@@ -1,16 +1,17 @@
-#shimages.com/static/images/<filename> 
+#sharkimages.com/static/images/<filename> 
 import os
 import flask
 import sqlite3 as sql
 from imageup import app
-#app = Blueprint('views',__name__,
-#                static_folder='static',
-#                template_folder='templates')
 
 
 @app.route('/uploaded/<filename>')
 @app.route('/<username>/uploaded/<filename>')
 def image_details(filename,username='anonymous'):
+    print
+    print "hello"
+    print
+
     print username
     print filename
     #secure url

@@ -11,17 +11,7 @@ app.config.update(
 )
 
 app.config["CACHE_TYPE"] = "null"
-
-def login_required(test):
-    @wraps(test)
-    def wrap( *args, **kwargs):
-        if 'username_in' or 'username'  in session:
-            return test(*args,**kwargs)
-            print username_in
-        else:
-            flask.flash("you are not logged in")
-            return flask.redirect(flask.url_for('login'))
-    return wrap
+app.config['STATIC_FOLDER'] = 'images'
 
 
 from imageup.views.route import app
@@ -32,7 +22,9 @@ from imageup.views.register import app
 from imageup.views.upload import app
 from imageup.views.logout import app
 
-#from imageup.models import app
+
+
+
 
 
 

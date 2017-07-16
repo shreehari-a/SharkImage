@@ -1,12 +1,11 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+<div class="navbar navbar-inverse">
         <div class="navbar-header">
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">SharkimaGe</a>
+            <a class="navbar-brand" href="/">SHARKimages</a>
         </div>
         <center>
             <div class="navbar-collapse collapse" id="navbar-main">
@@ -27,20 +26,48 @@
                         <li><a href="/logout">Logout</a></li>
                     </ul>
                 {% else %}
-                    <form action="/register" method="POST" class="navbar-form navbar-right">
-                        <button type="submit" class="btn btn-primary" name="register">Register</button>
-                    </form>
-                    <form action="/" method="POST" class="navbar-form navbar-right" >
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="username" placeholder="Username" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        </div>
-                        <button type="submit" class="btn btn-default" name="login">Login</button>
-                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                    <a type="button" class="btn" data-toggle="modal" data-target="#myModal"><strong style="color:white;font-size: 20px;">Login/Register</strong></a> 
+                    </ul>
                 {% endif %}
             </div>
         </center>
+
+
+</div>
+
+<div class="modal fade" id="myModal" role="dialog" style="text-align:center;" >
+        <div class="modal-dialog" style="margin-top:70px;">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Login/Register</strong></h4>
+            </div>  
+            <div class="modal-body">
+                <form action="/" method="POST" enctype="multipart/form-data" >
+                    <center>
+                    <input type="text" class="form-control"  name="username" placeholder="Username" required></input>
+                    <br/>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required></input>
+                    <br/>
+                </center>
+                    <button type="submit" class="btn btn-default" name="login">Login</button>
+                </form>
+                <br/>
+                <hr>
+                <br/>
+                <form action="/register" method="POST" enctype="multipart/form-data" >
+                    <center>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required></input>
+                    <br/>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required></input>
+                    <br/>
+                </center>
+                    <button type="submit" class="btn btn-default" name="register">register</button>
+                </form> 
+            </div>
+           
+        </div>
     </div>
-</div> 
+</div>
+
+

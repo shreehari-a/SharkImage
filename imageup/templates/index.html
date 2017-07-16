@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
+<title>SHARKimages</title>
 <head>
-
 <link rel="stylesheet" href="/static/bootstrap.min.css">
 <script src="/static/jquery.min.js"></script>
+<link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css"/>
+<link href='https://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
 <script src="/static/bootstrap.min.js"></script>
-
-
 <style>
         .container{
                     margin: 0 auto;
@@ -18,8 +18,15 @@
 		width:300px; 
 		height:350px; 
 		background:#f3f3f3; 
-		border:2px dashed #e8e8e8;}
+		border:2px dashed #e8e8e8;
+		text-align:center;
 
+	}
+		.navbar-brand{
+			font-family: 'Bevan', cursive;
+			font-weight: 25px;
+			font-size: 25px;
+		}
 
 
 	#fileToUpload{
@@ -40,7 +47,16 @@
 		left:-1px;
 		z-index:1;
 		border:none;}
+	.form-control{
+		width:40% !important;
+		text-align:center;
+	}
 	
+#upload{
+	color:white;
+	background-color: black;
+	width:300px;
+}
 </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js">
 </script>
@@ -48,7 +64,7 @@
 window.onload = function () { 
 	var imageLoader = document.getElementById('fileToUpload');
     imageLoader.addEventListener('change', handleImage, false);
-
+    // $('#upload').hide();
 	function handleImage(e) {
     	
     	var reader = new FileReader();
@@ -56,6 +72,8 @@ window.onload = function () {
     	reader.onload = function (event) {
         
         $('.uploader img').attr('src',event.target.result);
+    	$('#dragged_image').show();
+    	// $('#upload').show();
     	}
     
    	console.log(e.target.files[0]);
@@ -67,21 +85,21 @@ window.onload = function () {
 </script>
 
 </head>
-<body class="container">
+<body class="container" >
         {% include 'menu.html' %}
         </br></br></br>
         
         <div class="col-lg-1  centered">    
         <form action="/upload/{{ username }}" method='POST' enctype="multipart/form-data">   
             <p>
-                <div class="uploader" onclick="$('#fileToUpload').click()">
+             <div class="uploader" onclick="$('#fileToUpload').click()">
 		    Click here or drag here your images for preview 
-			<img src=""/>
-			<input type="file" name="fileToUpload" id="fileToUpload" accept="image/">
+			<img id="dragged_image" src="" style="display: none;" />
+			<input type="file" name="fileToUpload" id="fileToUpload" accept="image/" required>
                 </div>
             </p>
             </br>
-            <p> <input type="submit" value="Upload Image" name="submit" ></p>
+            <p> <input class="btn" id="upload" type="submit" value="Upload Image" name="submit" ></p>
         </form>
 </body>
 

@@ -101,9 +101,11 @@ def handle_upload(username='anonymous'):
         outfile = os.path.join(os.getcwd(),'imageup','images','thumbnails',os.path.splitext(new_filename)[0]+".thumbnail")
         im.save(outfile,"JPEG") 
        
-              
-        if username is 'anonymous':
-            return flask.redirect(flask.url_for('image_details',filename=new_filename,username=username))
+        print username    
+        if username == 'anonymous':
+            return flask.redirect(flask.url_for('image_details',filename=new_filename,username=username_in))
+
+        print flask.session['username_in']
         return flask.redirect(flask.url_for('image_details',filename=new_filename,username=flask.session['username_in']))
 
     else:

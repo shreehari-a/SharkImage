@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <head>
+
+<link href='https://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.css" rel="stylesheet" type="text/css"> -->
 <link rel="stylesheet" href="/static/bootstrap.min.css">
 <style>
     .container{
             margin:0 auto;
             max-width: 970px;
         }
+    .navbar-brand{
+
+       font-family: 'Bevan', cursive;
+       font-weight: 25px;
+       font-size: 25px;
+    }
+    .form-control{
+    width:40% !important;
+    text-align:center;
+  }
+  .card-image {
+  display: block;
+  position: relative;
+}
+
+.card {
+  background-color: white;
+  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+          box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  color: #4a4a4a;
+  max-width: 100%;
+  position: relative;
+}
+.image.is-4by3{
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
 </style>
 <script src="/static/jquery.min.js"></script>
 <script src="/static/bootstrap.min.js"></script>
@@ -26,9 +61,7 @@ $('.grid').imagesLoaded().progress( function() {
 </head>
 <body class="container">
     {% include 'menu.html' %}
-</br></br></br>
 
-<hr>
     <div class="container">
         <div class="row">
             <div class="grid">
@@ -44,6 +77,25 @@ $('.grid').imagesLoaded().progress( function() {
         </div>
         </div>
     </div>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="grid">
+        {% for img in image_list%}
+        <div class="grid-size"></div> 
+        <div class="grid-item">
+        <div class="card">
+          <div class="card-image">
+          <figure class="image is-4by3">
+            <a href="{{url_for('image_details',filename=img.split('.')[0],username=username,) }}" >
+                    <img src="{{url_for('sendimages',filename=img.split('.')[0])}}">
+                </a>
+          </figure>
+          </div>
+          <div class="card-content">
+          </div>
+      </div>
+      </div> 
+    {% endfor %}-->
 
 </body>
 </html>

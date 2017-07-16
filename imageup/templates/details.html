@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
     <style>
@@ -15,12 +16,17 @@
         .btn{
                 max-width:150px;
             }
+            .navbar-brand{
+
+       font-family: 'Bevan', cursive;
+       font-weight: 25px;
+       font-size: 25px;
+    }
     </style>
 </head>
 <body class="container">
-
 {% include 'menu.html' %}
-</br></br>/</br>
+
 <div>
 <h2>{{ img_id }}</h2>
 <p><img src="{{url_for('sendoneimage',filename=img_id+'.jpg')}}" id="imagesize"/></p>
