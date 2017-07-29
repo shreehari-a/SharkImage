@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <head>
+<title>SI : Gallery</title>
 
-<link href='https://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.css" rel="stylesheet" type="text/css"> -->
 <link rel="stylesheet" href="/static/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
+<script src="/static/jquery.min.js"></script>
+<script src="/static/bootstrap.min.js"></script>
+
+<script src="/static/masonry.pkgd.min.js"></script>
 <style>
-    .container{
+/*    .container{
             margin:0 auto;
             max-width: 970px;
-        }
+        }*/
     .navbar-brand{
 
        font-family: 'Bevan', cursive;
@@ -19,32 +23,15 @@
     width:40% !important;
     text-align:center;
   }
-  .card-image {
-  display: block;
-  position: relative;
+.floated_img
+{
+    float: left;
 }
 
-.card {
-  background-color: white;
-  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-          box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-  color: #4a4a4a;
-  max-width: 100%;
-  position: relative;
-}
-.image.is-4by3{
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
+
+
 </style>
-<script src="/static/jquery.min.js"></script>
-<script src="/static/bootstrap.min.js"></script>
-<script src="/static/masonry.pkgd.min.js"></script>
+
 <script>
 $(function() {
 $('.grid').masonry({
@@ -61,8 +48,23 @@ $('.grid').imagesLoaded().progress( function() {
 </head>
 <body class="container">
     {% include 'menu.html' %}
+<div class="row">
+            {% for img in image_list%}
 
-    <div class="container">
+<div class="column col-md-4">
+	<div class="floated_img">
+            <a href="{{url_for('image_details',filename=img.split('.')[0],username=username,) }}" >
+                <img src="{{url_for('sendimages',filename=img.split('.')[0])}}">
+            </a>
+
+    	<p>Description of above image</p>
+	</div>
+
+</div>
+
+            {% endfor %}
+</div>
+ <!--<div class="container">
         <div class="row">
             <div class="grid">
              {% for img in image_list%}
@@ -76,27 +78,7 @@ $('.grid').imagesLoaded().progress( function() {
             {% endfor %}
         </div>
         </div>
-    </div>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="grid">
-        {% for img in image_list%}
-        <div class="grid-size"></div> 
-        <div class="grid-item">
-        <div class="card">
-          <div class="card-image">
-          <figure class="image is-4by3">
-            <a href="{{url_for('image_details',filename=img.split('.')[0],username=username,) }}" >
-                    <img src="{{url_for('sendimages',filename=img.split('.')[0])}}">
-                </a>
-          </figure>
-          </div>
-          <div class="card-content">
-          </div>
-      </div>
-      </div> 
-    {% endfor %}-->
-
+    </div-->
 </body>
 </html>
 

@@ -60,7 +60,7 @@ def login():
                 con.close()
                 return render_template('index.html', username=username)
             else:
-                loginerror = "invalid password"
+                loginerror = "Invalid password"
                 return render_template('index.html',loginerror=loginerror)
     else: 
         if 'username_in' in session:

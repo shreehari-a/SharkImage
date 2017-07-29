@@ -1,6 +1,7 @@
 database.db
-imageup/images/*
+imageup/static/images/*
 *pyc
 *py~
 *swp
+shark-env
 

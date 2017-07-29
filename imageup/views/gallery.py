@@ -1,4 +1,4 @@
-#shimages.com/<username>/uploaded- public url uploaded images
+#sharkimages.com/<username>/uploaded- public url uploaded images
 import flask 
 from datetime import datetime
 import sqlite3 as sql
@@ -46,7 +46,7 @@ def explore(username='anonymous'):
 @app.route('/send_images/<filename>')
 def sendimages(filename):
     filename = filename + '.thumbnail'
-    path  = os.path.join(os.getcwd(),'imageup','images','thumbnails')
+    path  = os.path.join(os.getcwd(),'imageup','static','images','thumbnails')
     return flask.send_from_directory(path,filename)
 
 

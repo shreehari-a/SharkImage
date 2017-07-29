@@ -8,12 +8,6 @@ from imageup import app
 @app.route('/uploaded/<filename>')
 @app.route('/<username>/uploaded/<filename>')
 def image_details(filename,username='anonymous'):
-    print
-    print "hello"
-    print
-
-    print username
-    print filename
     #secure url
 
     if username != 'anonymous' and  not flask.session:
@@ -31,7 +25,8 @@ def image_details(filename,username='anonymous'):
     else:
         key = 'public'
     #link for sharing
-    link = os.path.join(flask.request.url_root,"images",filename + '.jpg')
+    link = os.path.join(flask.request.url_root,"static","images",filename + '.jpg')
+    print link
     filename = filename.split('.')
     img_id = filename[0]
 
@@ -42,7 +37,7 @@ def image_details(filename,username='anonymous'):
 
 @app.route('/send_one_image/<filename>')
 def sendoneimage(filename):
-    path = os.path.join(os.getcwd(),'imageup','images')
+    path = os.path.join(os.getcwd(),'imageup','static','images')
     return flask.send_from_directory(path,filename)
 
 @app.route('/makepublic/<username>/<image_id>')

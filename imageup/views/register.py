@@ -42,9 +42,10 @@ def register():
             #store into database
             cur.execute("INSERT INTO users (username,salt,password) VALUES (?,?,?)", (username_in,salt,password))
             con.commit()
-            return "registration succes"
+	    success = '%s , Thanks for registering. Please login.'%username_in
+            return render_template('index.html',success=success)
         #if user already exist
         else:
             error = 'User already exists'
-            return render_template("login.html",error=error)
+            return render_template("index.html",error=error)
         con.close()
