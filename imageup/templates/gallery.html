@@ -51,13 +51,12 @@ $('.grid').imagesLoaded().progress( function() {
 <div class="row">
             {% for img in image_list%}
 
-<div class="column col-md-4">
+<div class="column col-md-3">
 	<div class="floated_img">
             <a href="{{url_for('image_details',filename=img.split('.')[0],username=username,) }}" >
                 <img src="{{url_for('sendimages',filename=img.split('.')[0])}}">
             </a>
 
-    	<p>Description of above image</p>
 	</div>
 
 </div>
